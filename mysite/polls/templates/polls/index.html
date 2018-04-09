@@ -1,0 +1,63 @@
+<style>
+    li a {
+    color: red;
+}
+body {
+background-color:#C9D68E  ;
+}
+.button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+<br>
+<br>
+<center>
+<button class="button"><span>Survey</span></button>
+    </center>
+{% if latest_question_list %}
+<center>
+<ul>
+    {%for question in latest_question_list%}
+    <h1 style="font-family: 'Berkshire Swash', cursive;"><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a></h1>
+    {% endfor %}
+</ul>
+    </center>
+{% else %}
+<p>No polls available</p>
+{% endif %}
